@@ -3,16 +3,28 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    
+    public static AudioManager instance;
 
     [SerializeField]
     private List<Sound> _sounds;
 
-    private void Awake()
+    private void Start()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance == this)
+        {
+            Destroy(gameObject);
+        }
 
+        Initialization();
+    }
 
-        foreach(Sound sound in _sounds)
+    private void Initialization()
+    {
+        foreach (Sound sound in _sounds)
         {
             sound.Source = gameObject.AddComponent<AudioSource>();
 
