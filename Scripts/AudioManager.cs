@@ -3,11 +3,16 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    public List<Sound> sounds;
+    
+
+    [SerializeField]
+    private List<Sound> _sounds;
 
     private void Awake()
     {
-        foreach(Sound sound in sounds)
+
+
+        foreach(Sound sound in _sounds)
         {
             sound.Source = gameObject.AddComponent<AudioSource>();
 
@@ -17,7 +22,7 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
-        Sound s = sounds.Find(x => x.Name == name);
+        Sound s = _sounds.Find(x => x.Name == name);
         s.Source.Play();
     }
 }
