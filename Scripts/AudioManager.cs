@@ -1,11 +1,9 @@
-using UnityEngine.Audio;
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    public List<Sound> sounds;
 
     private void Awake()
     {
@@ -19,7 +17,7 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.Name == name);
+        Sound s = sounds.Find(x => x.Name == name);
         s.Source.Play();
     }
 }
